@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_color"
-    tools:context=".AzkarListActivity">
+    tools:context=".ui.AzkarListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/azkar_titles_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primary_color"
-        tools:listitem="@layout/activity_azkar_list" />
+        tools:listitem="@layout/fragment_azkar_list" />
 </androidx.constraintlayout.widget.ConstraintLayout>

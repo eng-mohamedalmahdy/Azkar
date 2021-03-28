@@ -1,4 +1,4 @@
-package com.example.azkar
+package com.example.azkar.pojo
 
 data class AzkarItem(
     val id: Long,

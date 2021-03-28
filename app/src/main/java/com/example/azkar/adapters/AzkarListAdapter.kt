@@ -1,7 +1,6 @@
-package com.example.azkar
+package com.example.azkar.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -10,12 +9,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.findNavController
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
+import com.example.azkar.pojo.AzkarItem
+import com.example.azkar.R
+import com.example.azkar.util.Utils
+import com.example.azkar.ui.AzkarListFragmentDirections
 
 
 class AzkarListAdapter(private var azkars: List<AzkarItem>) :
     RecyclerView.Adapter<AzkarListAdapter.AzkarViewHolder>() {
+
     private var originalList = azkars.toList()
 
     init {
@@ -36,9 +41,11 @@ class AzkarListAdapter(private var azkars: List<AzkarItem>) :
             } else {
                 title.text = itemView.context.getString(azkarItem.title)
                 card.setOnClickListener {
-                    val intent = Intent(itemView.context, AzkarDetailsActivity::class.java)
-                    intent.putExtra("AZKAR_TYPE", azkarItem.title)
-                    itemView.context.startActivity(intent)
+                    itemView.findNavController().navigate(
+                        AzkarListFragmentDirections.actionAzkarListFragmentToAzkarDetailsFragment(
+                            azkarItem.title
+                        )
+                    )
                 }
             }
             if (azkarItem.content == -1) {
@@ -46,6 +53,8 @@ class AzkarListAdapter(private var azkars: List<AzkarItem>) :
             } else {
                 content.text = itemView.context.getString(azkarItem.content)
             }
+
+
             if (azkarItem.background != -1) {
                 Thread() {
                     val img =
@@ -74,15 +83,24 @@ class AzkarListAdapter(private var azkars: List<AzkarItem>) :
     override fun getItemId(position: Int) = azkars[position].id
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = AzkarViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.list_item_azkar, parent, false)
-    )
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AzkarViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item_azkar, parent, false)
+        val layoutParams: ViewGroup.LayoutParams = view.layoutParams
+        layoutParams.height = (parent.height * 0.3).toInt()
+        view.layoutParams = layoutParams
+        return AzkarViewHolder(view)
+    }
+
 
     override fun getItemCount(): Int = azkars.size
 
     override fun onBindViewHolder(holder: AzkarViewHolder, position: Int) {
         holder.bind(azkars[position])
-        holder.setIsRecyclable(false);
     }
 
     fun filter(newText: String?, context: Context) {

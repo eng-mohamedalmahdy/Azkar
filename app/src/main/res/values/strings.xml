@@ -98,6 +98,10 @@
     <string name="after_prayer_azkar_8">اللَّهُمَّ أَجِرْنِي مِنْ النَّار</string>
     <string name="after_prayer_azkar_9">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</string>
     <string name="after_prayer_azkar_10">@string/morning_azkar_1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="azkar">اذكار</string>
+    <string name="prayer_time">مواقيت الصلاة</string>
 
 
 </resources>

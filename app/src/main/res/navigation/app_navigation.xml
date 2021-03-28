@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/splashFragment">
+
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.azkar.ui.SplashFragment"
+        android:label="SplashFragment">
+        <action
+            android:id="@+id/action_splashFragment_to_mainListFragment"
+            app:destination="@id/mainMenuFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/app_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/azkarListFragment"
+        android:name="com.example.azkar.ui.AzkarListFragment"
+        android:label="fragment_main_list"
+        tools:layout="@layout/fragment_azkar_list">
+        <action
+            android:id="@+id/action_azkarListFragment_to_azkarDetailsFragment"
+            app:destination="@id/azkarDetailsFragment">
+            <argument
+                android:name="AZKAR_TYPE"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/azkarDetailsFragment"
+        android:name="com.example.azkar.ui.AzkarDetailsFragment"
+        android:label="fragment_azkar_details"
+        tools:layout="@layout/fragment_azkar_details">
+        <argument
+            android:name="AZKAR_TYPE"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.example.azkar.ui.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_azkarListFragment"
+            app:destination="@id/azkarListFragment" />
+    </fragment>
+</navigation>
